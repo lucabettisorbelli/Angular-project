@@ -1,0 +1,22 @@
+<h1>Login</h1>
+
+<form #registerform="ngForm" (ngSubmit)="onRegisterSubmit(registerform)">
+    <mat-form-field>
+        <mat-label>Nome</mat-label>
+        <input matInput type="text" name="nome" required ngModel>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Cognome</mat-label>
+        <input matInput type="text" name="cognome" required ngModel>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" name="password" required ngModel>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput type="email" name="email" required ngModel>
+    </mat-form-field>
+    <button mat-stroked-button color="primary" [disabled]="!registerform.valid">Registrati</button>
+</form>
+

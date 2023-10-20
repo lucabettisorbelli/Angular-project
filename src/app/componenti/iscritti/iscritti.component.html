@@ -1,0 +1,62 @@
+
+<div id="contenitore">
+    <div id="navbar">
+        <h1>Lista iscritti</h1>
+        <div *ngFor="let user of iscritti, index as id">
+            <a [routerLink]="['/iscritti', id]"><p>{{user.nome}} {{user.cognome}}</p></a>
+        </div>
+    </div>
+    
+    <!-- <app-iscritto [iscritto] ="iscritto"></app-iscritto> -->
+    <div>
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+<!-- template Driven form -->
+<h1>Template Driven Form</h1>
+
+<form #homeform="ngForm" (ngSubmit)="onSubmit(homeform.value)">
+    <mat-form-field>
+        <mat-label>Nome</mat-label>
+        <input matInput type="text" name="nome" ngModel required>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput type="email" name="email" ngModel required email>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Colori</mat-label>
+        <mat-select name="colore" ngModel required>
+            <mat-option value="rosso">Rosso</mat-option>
+            <mat-option value="verde">Verde</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button mat-stroked-button color="primary" type="submit" [disabled]="!homeform.valid">Invia</button>
+</form>
+
+<!-- reactive form -->
+<h1>Reactive Form</h1>
+
+<form [formGroup]="activeForm" (submit)="onActiveSubmit()">
+    <mat-form-field>
+        <mat-label>Nome</mat-label>
+        <input matInput type="text" formControlName="nome">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput type="email" name="email" formControlName="email">
+    </mat-form-field>
+    <p *ngIf="!activeForm.get('email')?.valid && activeForm.get('email')?.touched">Inserisci un email valida</p>
+    <mat-form-field>
+        <mat-label>Colori</mat-label>
+        <mat-select name="colore" formControlName="colore">
+            <mat-option value="rosso">Rosso</mat-option>
+            <mat-option value="verde">Verde</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button mat-stroked-button color="primary" type="submit" [disabled]="!activeForm.valid">Invia dati al DB</button>
+    <h2>Dati visibili in contatti</h2>
+</form>
+
+

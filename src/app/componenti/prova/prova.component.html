@@ -1,0 +1,103 @@
+<h1>Array passato da Appcomponent tramite Input</h1>
+<div *ngFor="let pianta of piante">
+  <mat-card>
+    <mat-card-content>Nome: {{pianta.nome}}</mat-card-content>
+    <mat-card-content>Luogo: {{pianta.luogoDiProvenienza}}</mat-card-content>
+  </mat-card>
+</div>
+
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>{{cani[0].nome.toUpperCase()}}</mat-card-title>
+    <mat-card-subtitle>{{cani[1].razza}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>This card indeterminates progress bar.</p>
+    <p>{{ 4 < 5 ? cani[1].descrizione : 'niente'}}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>
+
+<button (click)="onButtonClick(this)" id="bottone" mat-raised-button color="primary" [disabled]="isDisable">Primary</button>
+
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>Shiba Inu</mat-card-title>
+    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image [src]="currentimage" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p>
+      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+      bred for hunting.
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>
+
+<mat-form-field class="example-full-width">
+  <mat-label>Favorite food</mat-label>
+  <!-- (input)="onInput($event)" -->
+  <input matInput placeholder="Ex. Pizza" (input)="onInput($event)" [(ngModel)]="title">
+</mat-form-field>
+
+<p>{{title}}</p>
+
+<button (click)="changeStatus()" mat-raised-button color="primary">Cambia stato</button>
+<p *ngIf="isVisible; else bloccoelse">Sono visibile</p>
+<!-- il blocco #else deve essere per forza dentro un ng-template -->
+<ng-template #bloccoelse>
+  <p>Non sono visibile</p>
+</ng-template>
+
+<button (click)="changeStatus()" mat-raised-button color="primary">Cambia stato</button>
+<p *ngIf="isVisible; then blocco1 else blocco2"></p>
+<ng-template #blocco1>
+  <p>Sono visibile</p>
+</ng-template>
+<ng-template #blocco2>
+  <p>Non sono visibile</p>
+</ng-template>
+
+<ul *ngFor="let cane of cani; index as i; count as c; odd as isOdd; even as isEven">
+  <li>
+    <div class="cerchio" [ngStyle]="{'background': cane.isOnline ? 'green' : 'red'}"></div>
+    <h2 [ngClass]="cane.isOnline ? 'online' : 'offline'">Cane {{ i + 1 }}</h2>
+    <p>Nome: {{ cane.nome }}</p>
+    <p>Razza: {{ cane.razza }}</p>
+    <p>Descrizione: {{ cane.descrizione }}</p>
+    <p>É pari? {{ isOdd ? 'Sì' : 'No' }}</p>
+  </li>
+</ul>
+<p>Numero totale di cani: {{ cani.length }}</p> 
+
+
+<button (click)="addNumber()" mat-raised-button color="primary">Aumenta numero</button>
+
+<div [ngSwitch]="numero">
+  <p *ngSwitchCase="1">uno</p> 
+  <p *ngSwitchCase="2">due</p> 
+  <p *ngSwitchCase="3">tre</p> 
+  <p *ngSwitchCase="4">quattro</p> 
+</div>
+
+<input #prendimi type="text" value="hello">
+<button (click)="prendimelo()">clicca</button>
+<p>{{preso}}</p>
+
+<h2>Scegli il colore</h2>
+
+<input type="radio" name="coloreEvidenziatore" (click)="cambiaColoreEvidenziatore('red')">Rosso
+<input type="radio" name="coloreEvidenziatore" (click)="cambiaColoreEvidenziatore('green')">Verde
+<input type="radio" name="coloreEvidenziatore" (click)="cambiaColoreEvidenziatore('blue')">Blu
+
+<p [appHighlight]="colore">ciao mamma</p>
+

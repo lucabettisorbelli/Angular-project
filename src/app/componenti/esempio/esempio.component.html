@@ -1,0 +1,27 @@
+<h1>Tutta la squadra</h1>
+<div *ngFor="let dato of squadra">
+    <p [ngStyle]="{'color': dato.eta > 18 ? 'red' : 'green'}">Nome: {{dato.nome}}</p>
+    <p>Cognome: {{dato.cognome}}</p>
+    <p>Età: {{dato.eta}}</p>
+</div>
+
+<h1>Solo i maggiorenni</h1>
+<div *ngFor="let dato of maggiorenni">
+    <p>Nome: {{dato.nome}}</p>
+    <p>Cognome: {{dato.cognome}}</p>
+    <p>Età: {{dato.eta}}</p>
+</div>
+
+
+<button (click)="mostraMaggiorenni()">mostra Maggiorenni</button>
+
+<h1>Array passato da Appcomponent tramite Input</h1>
+<div *ngFor="let pianta of piante">
+    <p>Nome: {{pianta.nome}}</p>
+    <p>Luogo di provenienza: {{pianta.luogoDiProvenienza}}</p>
+</div>
+
+<!-- passare il valore di input tramite #variabile -->
+<input (keyup.enter)="prendiValue()" #inputSaluti type="text" value="ciao">
+<button (click)="prendiValue()">prendi valore</button>
+<p>{{valore}}</p>
